@@ -1,0 +1,13 @@
+.App-nav-item button {
+  font-size: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.App-nav-item a:hover {
+  color: #999;
+}
+.App-nav-item.selected {
+  border-bottom-color: #ffaa3f;
+}
