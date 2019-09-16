@@ -38,17 +38,19 @@ class App extends Component {
     // Подсчитать сколько каждого элемента в массиве
     const itemCounts = cart.reduce((itemCounts, itemId) => {
       itemCounts[itemId] = itemCounts[itemId] || 0;
-      itemCounts[itemId]++;
+      itemCounts[itemId] += 1;
       return itemCounts;
     }, {});
+    // console.log(itemCounts);  {0: 1, 2: 4}
+
     // Создать новый массив items
     const cartItems = Object.keys(itemCounts).map(itemId => {
       // Найти item по его id
-      const item = items.find(item => item.id === parseInt(itemId, 10));
+      const findItem = items.find(item => item.id === parseInt(itemId, 10));
 
       // Создать новый item со свойством count
       return {
-        ...item,
+        ...findItem,
         count: itemCounts[itemId]
       };
     });
