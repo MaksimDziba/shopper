@@ -23,6 +23,14 @@ class App extends Component {
     });
   };
 
+  handleRemoveOne = item => {
+    const { cart } = this.state;
+    const idx = cart.indexOf(item.id);
+    this.setState({
+      cart: [...cart.slice(0, idx), ...cart.slice(idx + 1)]
+    });
+  };
+
   renderContent = ({ activeTab }) => {
     switch (activeTab) {
       default:
@@ -36,10 +44,12 @@ class App extends Component {
   renderCart() {
     const { cart } = this.state;
     // Подсчитать сколько каждого элемента в массиве
-    const itemCounts = cart.reduce((itemCounts, itemId) => {
-      itemCounts[itemId] = itemCounts[itemId] || 0;
-      itemCounts[itemId] += 1;
-      return itemCounts;
+    const itemCounts = cart.reduce((itemOrder, itemId) => {
+      // такой код, только из-за ошибок eslint
+      const itemSum = itemOrder;
+      itemSum[itemId] = itemSum[itemId] || 0;
+      itemSum[itemId] += 1;
+      return itemSum;
     }, {});
     // console.log(itemCounts);  {0: 1, 2: 4}
 
@@ -54,7 +64,21 @@ class App extends Component {
         count: itemCounts[itemId]
       };
     });
-    return <CartPage items={cartItems} />;
+
+    const totalPrice = cartItems.reduce((sum, item) => {
+      let total = sum;
+      total += item.price * item.count;
+      return total;
+    }, 0);
+
+    return (
+      <CartPage
+        items={cartItems}
+        onAddOne={this.handleAddToCart}
+        onRemoveOne={this.handleRemoveOne}
+        totalPrice={totalPrice.toFixed(2)}
+      />
+    );
   }
 
   render() {

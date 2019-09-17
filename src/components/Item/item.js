@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './item.css';
 
-const Item = ({ item, onAddToCart }) => {
+const Item = ({ item, children }) => {
   return (
     <div className="Item">
       <div className="Item-left">
@@ -12,9 +12,7 @@ const Item = ({ item, onAddToCart }) => {
       </div>
       <div className="Item-right">
         <div className="Item-price">${item.price}</div>
-        <button type="button" className="Item-addToCart" onClick={onAddToCart}>
-          Add to Cart
-        </button>
+        {children}
       </div>
     </div>
   );
@@ -24,8 +22,7 @@ Item.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
-  }),
-  onAddToCart: PropTypes.func.isRequired
+  })
 };
 
 Item.defaultProps = {
