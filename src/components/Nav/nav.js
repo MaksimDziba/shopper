@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NavLink from '../NavLink';
 
 import './nav.css';
@@ -23,5 +24,11 @@ const Nav = ({ activeTab, onTabChange, data, price }) => (
     </ul>
   </nav>
 );
+
+Nav.propTypes = {
+  activeTab: PropTypes.number.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  price: PropTypes.number.isRequired
+};
 
 export default Nav;

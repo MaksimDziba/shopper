@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class NavLink extends Component {
   handleClick = () => {
@@ -15,5 +16,9 @@ class NavLink extends Component {
     );
   }
 }
+
+NavLink.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default NavLink;

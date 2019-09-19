@@ -42,7 +42,8 @@ function CartPage({ items, onAddOne, onRemoveOne, totalPrice }) {
 CartPage.propTypes = {
   items: PropTypes.instanceOf(Array).isRequired,
   onAddOne: PropTypes.func.isRequired,
-  onRemoveOne: PropTypes.func.isRequired
+  onRemoveOne: PropTypes.func.isRequired,
+  totalPrice: PropTypes.number.isRequired
 };
 
 export default CartPage;
