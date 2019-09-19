@@ -1,9 +1,11 @@
 ![GitHub Logo](/repository-img.jpg)
-Format: ![Alt Text](url)
 
-## Available Scripts
+## Example: Shopping Site
 
-In the project directory, you can run:
+In this example we’ll build a simple shopping site that will demonstrate some of the things we’ve
+covered.
+
+### `npm init`
 
 ### `npm start`
 
