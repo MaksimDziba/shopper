@@ -9,9 +9,7 @@ import './app.css';
 class App extends Component {
   state = {
     activeTab: 0,
-    cart: [],
-    cartTotalPrice: 0,
-    cartTotalCounts: 0
+    cart: []
   };
 
   handleTabChange = index => {
@@ -43,7 +41,7 @@ class App extends Component {
     }
   };
 
-  renderCart() {
+  itemsFromCart = () => {
     const { cart } = this.state;
     // Подсчитать сколько каждого элемента в массиве
     const itemCounts = cart.reduce((itemOrder, itemId) => {
@@ -67,38 +65,42 @@ class App extends Component {
       };
     });
 
-    const cartTotalPrice = cartItems.reduce((sum, item) => {
+    return cartItems;
+  };
+
+  itemsPrice = () => {
+    const cartItems = this.itemsFromCart();
+    const itemsTotalPrice = cartItems.reduce((sum, item) => {
       let total = sum;
       total += item.price * item.count;
       return total;
     }, 0);
+    return itemsTotalPrice;
+  };
 
-    const cartTotalCounts = Object.values(itemCounts).reduce(
-      (sum, value) => sum + value
-    );
-
-    this.setState({
-      cartTotalCounts
-    });
+  renderCart() {
+    const itemsCart = this.itemsFromCart();
 
     return (
       <CartPage
-        items={cartItems}
+        items={itemsCart}
         onAddOne={this.handleAddToCart}
         onRemoveOne={this.handleRemoveOne}
-        totalPrice={cartTotalPrice.toFixed(2)}
+        totalPrice={this.itemsPrice()}
       />
     );
   }
 
   render() {
-    const { activeTab, cartTotalCounts } = this.state;
+    const { activeTab, cart } = this.state;
+    const somePrice = this.itemsPrice();
     return (
       <div className="App">
         <Nav
           activeTab={activeTab}
           onTabChange={this.handleTabChange}
-          data={cartTotalCounts}
+          data={cart}
+          price={somePrice}
         />
         <main className="App-content">{this.renderContent(this.state)}</main>
       </div>
