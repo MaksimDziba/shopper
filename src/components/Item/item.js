@@ -6,7 +6,11 @@ const Item = ({ item, children }) => {
   return (
     <div className="Item">
       <div className="Item-left">
-        <div className="Item-image" />
+        <img
+          className="Item-image"
+          src={`img/products/${item.img}.jpg`}
+          alt={item.name}
+        />
         <div className="Item-title">{item.name}</div>
         <div className="Item-description">{item.description}</div>
       </div>

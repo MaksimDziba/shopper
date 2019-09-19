@@ -5,7 +5,7 @@ import './item-page.css';
 
 function ItemPage({ items, onAddToCart }) {
   return (
-    <ul>
+    <ul className="ItemPage">
       {items.map(item => (
         <li key={item.id} className="ItemPage-item">
           <Item item={item}>

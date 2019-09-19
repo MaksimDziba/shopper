@@ -11,3 +11,11 @@
 .App-nav-item.selected {
   border-bottom-color: #ffaa3f;
 }
+.App-nav-cart {
+  display: inline-block;
+  float: right;
+  font-size: 18px;
+}
+.App-nav-cart .fa {
+  margin-right: 10px;
+}

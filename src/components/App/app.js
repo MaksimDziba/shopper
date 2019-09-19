@@ -9,7 +9,9 @@ import './app.css';
 class App extends Component {
   state = {
     activeTab: 0,
-    cart: []
+    cart: [],
+    cartTotalPrice: 0,
+    cartTotalCounts: 0
   };
 
   handleTabChange = index => {
@@ -65,27 +67,39 @@ class App extends Component {
       };
     });
 
-    const totalPrice = cartItems.reduce((sum, item) => {
+    const cartTotalPrice = cartItems.reduce((sum, item) => {
       let total = sum;
       total += item.price * item.count;
       return total;
     }, 0);
+
+    const cartTotalCounts = Object.values(itemCounts).reduce(
+      (sum, value) => sum + value
+    );
+
+    this.setState({
+      cartTotalCounts
+    });
 
     return (
       <CartPage
         items={cartItems}
         onAddOne={this.handleAddToCart}
         onRemoveOne={this.handleRemoveOne}
-        totalPrice={totalPrice.toFixed(2)}
+        totalPrice={cartTotalPrice.toFixed(2)}
       />
     );
   }
 
   render() {
-    const { activeTab } = this.state;
+    const { activeTab, cartTotalCounts } = this.state;
     return (
       <div className="App">
-        <Nav activeTab={activeTab} onTabChange={this.handleTabChange} />
+        <Nav
+          activeTab={activeTab}
+          onTabChange={this.handleTabChange}
+          data={cartTotalCounts}
+        />
         <main className="App-content">{this.renderContent(this.state)}</main>
       </div>
     );

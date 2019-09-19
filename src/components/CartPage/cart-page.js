@@ -4,7 +4,7 @@ import Item from '../Item';
 import './cart-page.css';
 
 function CartPage({ items, onAddOne, onRemoveOne, totalPrice }) {
-  return (
+  return items.length ? (
     <ul className="CartPage">
       {items.map(item => (
         <li key={item.id} className="CartPage-item">
@@ -31,6 +31,11 @@ function CartPage({ items, onAddOne, onRemoveOne, totalPrice }) {
       ))}
       <li className="CartPage-totalPrice">Total: ${totalPrice}</li>
     </ul>
+  ) : (
+    <div className="CartPage-empty">
+      <div>Your cart is empty</div>
+      <div>Why not add some expensive products to it?</div>
+    </div>
   );
 }
 

@@ -1,8 +1,8 @@
-.CartPage-items {
+.CartPage {
   margin: 0;
   padding: 0;
 }
-.CartPage-items li {
+.CartPage-item {
   list-style: none;
 }
 .CartItem-count {
@@ -26,4 +26,10 @@
   font-size: 20px;
   list-style: none;
   text-align: right;
+}
+.CartPage-empty {
+  padding: 20px 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-align: center;
 }
